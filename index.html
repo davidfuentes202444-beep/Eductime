@@ -3,86 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduRobótica | Aprende Robótica</title>
+    <title>EduRobótica | Portal Educativo</title>
     <style>
-        :root { --primary: #2c3e50; --accent: #3498db; --admin: #e74c3c; }
-        body { font-family: sans-serif; margin: 0; background: #f4f4f4; }
-        header { background: var(--primary); color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
-        nav button { background: none; border: none; color: white; cursor: pointer; font-weight: bold; margin-left: 15px; }
-        section { display: none; padding: 40px; max-width: 900px; margin: auto; background: white; min-height: 70vh; border-radius: 8px; margin-top: 20px; }
+        :root { --cobalto: #0056b3; --naranja: #ff8c00; --fondo: #f8f9fa; --texto: #333; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--fondo); color: var(--texto); line-height: 1.6; }
+        
+        /* Navegación */
+        header { background: #1a1a1a; color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        nav button { background: none; border: none; color: white; cursor: pointer; font-size: 1rem; margin-left: 15px; transition: 0.3s; }
+        nav button:hover { color: var(--naranja); }
+
+        /* Secciones */
+        section { display: none; padding: 60px 10%; animation: fadeIn 0.5s; }
         section.active { display: block; }
-        .card { border-left: 5px solid var(--accent); padding: 15px; background: #eee; margin: 10px 0; }
-        #admin-panel { border: 2px solid var(--admin); }
-        footer { text-align: center; padding: 20px; color: #666; font-size: 0.8rem; }
-        .hidden { display: none; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Estilos de Contenido */
+        .editable-area { border: 1px dashed #ccc; padding: 20px; border-radius: 8px; background: white; transition: 0.3s; }
+        .editable-area:hover { border-color: var(--naranja); outline: none; }
+        .hero { text-align: center; padding: 40px 0; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; color: white; border-radius: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        footer { text-align: center; padding: 40px; background: #1a1a1a; color: white; margin-top: 50px; }
+        .edit-hint { color: var(--naranja); font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; display: block; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>EduRobótica 🤖</h1>
+    <h2 onclick="show('inicio')" style="cursor:pointer">ROBOTIC-ED 🤖</h2>
     <nav>
         <button onclick="show('inicio')">Inicio</button>
-        <button onclick="show('conceptos')">Conceptos</button>
+        <button onclick="show('teoria')">Teoría</button>
+        <button onclick="show('componentes')">Kits</button>
         <button onclick="show('proyectos')">Proyectos</button>
         <button onclick="show('contacto')">Contacto</button>
-        </nav>
+    </nav>
 </header>
 
 <section id="inicio" class="active">
-    <h2>Bienvenido a la Era de la Robótica</h2>
-    <p>Explora el mundo de la automatización y la programación desde cero.</p>
-    <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd05a?w=500" alt="Robot" style="width:100%; border-radius:10px;">
+    <div class="hero">
+        <span class="edit-hint">[Haz clic abajo para editar el título y mensaje de bienvenida]</span>
+        <h1 contenteditable="true">Explora el Futuro de la Robótica</h1>
+        <p contenteditable="true">Aprende a construir, programar y diseñar sistemas inteligentes desde cero.</p>
+    </div>
 </section>
 
-<section id="conceptos">
-    <h2>Conceptos Básicos</h2>
-    <div class="card"><h3>Sensores</h3><p>Dispositivos que captan información del entorno.</p></div>
-    <div class="card"><h3>Actuadores</h3><p>Motores y luces que ejecutan acciones físicas.</p></div>
-    <div class="card"><h3>Microcontroladores</h3><p>El "cerebro" del robot (ej. Arduino, ESP32).</p></div>
+<section id="teoria">
+    <h2>Fundamentos de Robótica</h2>
+    <span class="edit-hint">[Puedes editar las definiciones haciendo clic en el texto]</span>
+    <div class="grid">
+        <div class="card">
+            <h3>¿Qué es un Robot?</h3>
+            <p contenteditable="true">Un sistema electromecánico capaz de realizar tareas de manera autónoma o semiautónoma mediante programación.</p>
+        </div>
+        <div class="card">
+            <h3>Leyes de la Robótica</h3>
+            <p contenteditable="true">Basadas en Isaac Asimov: 1. No dañar humanos. 2. Obedecer órdenes. 3. Proteger su propia existencia.</p>
+        </div>
+    </div>
+</section>
+
+<section id="componentes">
+    <h2>Hardware Esencial</h2>
+    <div class="grid">
+        <div class="card">
+            <h3 contenteditable="true">Cerebro: Arduino/ESP32</h3>
+            <p contenteditable="true">Es la unidad de control que procesa el código y toma decisiones según los sensores.</p>
+        </div>
+        <div class="card">
+            <h3 contenteditable="true">Sensores Ultrasonidos</h3>
+            <p contenteditable="true">Permiten al robot detectar obstáculos midiendo la distancia mediante ondas de sonido.</p>
+        </div>
+    </div>
 </section>
 
 <section id="proyectos">
-    <h2>Proyectos Paso a Paso</h2>
-    <ul>
-        <li><strong>Nivel 1:</strong> Seguidor de línea básico.</li>
-        <li><strong>Nivel 2:</strong> Brazo robótico con servomotores.</li>
-        <li><strong>Nivel 3:</strong> Robot controlado por Bluetooth.</li>
-    </ul>
+    <h2>Guía de Proyectos Prácticos</h2>
+    <div class="editable-area" contenteditable="true">
+        <h3>Proyecto 1: El Seguidor de Línea</h3>
+        <p>Aprende a usar sensores infrarrojos para seguir un camino marcado en el suelo.</p>
+        <hr>
+        <h3>Proyecto 2: Brazo Hidráulico/Robótico</h3>
+        <p>Introducción al uso de servomotores y articulaciones mecánicas.</p>
+    </div>
 </section>
 
 <section id="contacto">
-    <h2>Soporte Educativo</h2>
-    <p>¿Tienes dudas con tu kit? Escríbenos.</p>
-    <form>
-        <input type="email" placeholder="Tu correo" style="width:100%; padding:10px; margin-bottom:10px;"><br>
-        <textarea placeholder="Tu consulta" style="width:100%; height:100px;"></textarea><br>
-        <button type="button" style="background:var(--accent); color:white; border:none; padding:10px 20px;">Enviar</button>
-    </form>
-</section>
-
-<section id="admin">
-    <h2 style="color:var(--admin)">Panel de Control Administrativo</h2>
-    <p>Gestión de base de datos y usuarios (Acceso restringido).</p>
-    <table border="1" style="width:100%; border-collapse: collapse;">
-        <tr style="background:#eee"><th>Usuario</th><th>Progreso</th><th>Acción</th></tr>
-        <tr><td>Juan Pérez</td><td>85%</td><td><button>Editar</button></td></tr>
-        <tr><td>Ana Gómez</td><td>40%</td><td><button>Editar</button></td></tr>
-    </table>
+    <h2>Soporte y Comunidad</h2>
+    <p>Si tienes dudas sobre tus proyectos, contáctanos:</p>
+    <div class="editable-area" contenteditable="true">
+        <p>📧 Email: contacto@edurobotica.com</p>
+        <p>📍 Ubicación: Laboratorio de Innovación Tecnológica</p>
+        <p>🕒 Horario: Lunes a Viernes (09:00 - 18:00)</p>
+    </div>
 </section>
 
 <footer>
-    &copy; 2026 EduRobótica Educativa. 
-    <span onclick="show('admin')" style="cursor:pointer; color:#f4f4f4;">.</span>
+    <p>&copy; 2026 EduRobótica - Contenido Educativo Abierto</p>
 </footer>
 
 <script>
     function show(id) {
         // Ocultar todas las secciones
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        // Mostrar la seleccionada
+        // Mostrar la sección seleccionada
         document.getElementById(id).classList.add('active');
-        window.scrollTo(0,0);
+        // Desplazar al inicio de la página
+        window.scrollTo(0, 0);
     }
 </script>
 
