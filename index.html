@@ -3,114 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enciclopedia de Robótica Educativa</title>
+    <title>RobotiPedia | Enciclopedia Universal de la Robótica</title>
     <style>
-        :root { --tech-blue: #00d2ff; --deep-slate: #1a202c; --logic-green: #4ade80; }
-        body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; background: #f0f2f5; color: #2d3748; line-height: 1.8; }
+        :root { --wiki-link: #0645ad; --wiki-bg: #f8f9fa; --wiki-border: #a2a9b1; --text-color: #202122; }
+        body { font-family: 'Linux Libertine', 'Georgia', serif; margin: 0; background-color: #fff; color: var(--text-color); display: flex; }
         
-        header { background: var(--deep-slate); color: white; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--tech-blue); position: sticky; top: 0; z-index: 100; }
-        nav button { background: #2d3748; border: 1px solid var(--tech-blue); color: var(--tech-blue); cursor: pointer; padding: 10px 18px; border-radius: 4px; font-weight: bold; margin-left: 10px; transition: 0.3s; }
-        nav button:hover { background: var(--tech-blue); color: white; }
+        /* Barra Lateral Izquierda */
+        aside { width: 180px; background: #fff; padding: 20px; position: fixed; height: 100vh; border-right: 1px solid #ddd; font-size: 0.85em; }
+        aside img { width: 100%; margin-bottom: 20px; }
+        aside ul { list-style: none; padding: 0; }
+        aside li { margin-bottom: 10px; color: var(--wiki-link); cursor: pointer; }
+        aside li:hover { text-decoration: underline; }
 
-        section { display: none; padding: 60px 10%; animation: fadeIn 0.5s ease; }
+        /* Contenido Principal */
+        main { margin-left: 220px; padding: 40px; max-width: 1000px; width: 100%; }
+        header { border-bottom: 1px solid var(--wiki-border); margin-bottom: 20px; padding-bottom: 5px; }
+        h1 { font-family: 'Linux Libertine', serif; font-size: 2.5em; font-weight: normal; margin: 0; }
+        
+        section { display: none; }
         section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .content-box { background: white; padding: 35px; border-radius: 15px; shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 6px solid var(--tech-blue); margin-bottom: 30px; }
-        h1, h2 { color: var(--deep-slate); }
-        .editable { cursor: text; padding: 5px; border-radius: 3px; }
-        .editable:hover { background: #fdfae6; outline: 1px dashed #d4af37; }
+        /* Estilos Wiki */
+        .infobox { float: right; width: 280px; border: 1px solid var(--wiki-border); background: var(--wiki-bg); margin: 0 0 20px 20px; padding: 5px; font-size: 0.9em; font-family: sans-serif; }
+        .infobox th { background: #cedff2; padding: 5px; text-align: center; }
+        .infobox td { padding: 5px; border-top: 1px solid #ddd; }
         
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        code { background: #edf2f7; color: #e53e3e; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
-        footer { background: var(--deep-slate); color: #a0aec0; text-align: center; padding: 30px; margin-top: 60px; }
+        .toc { background: var(--wiki-bg); border: 1px solid var(--wiki-border); padding: 15px; display: inline-block; margin-bottom: 25px; font-family: sans-serif; font-size: 0.9em; }
+        .toc b { display: block; text-align: center; margin-bottom: 5px; }
+        
+        h2 { border-bottom: 1px solid var(--wiki-border); font-weight: normal; margin-top: 40px; }
+        h3 { border-bottom: none; font-weight: bold; margin-top: 25px; }
+        
+        .editable-content { padding: 10px; border: 1px transparent dashed; transition: 0.3s; }
+        .editable-content:hover { border-color: #ccc; background: #fdfdfd; }
+        .editable-content:focus { outline: 2px solid var(--wiki-link); background: #fff; }
+
+        footer { border-top: 1px solid var(--wiki-border); margin-top: 50px; padding: 20px 0; font-size: 0.8em; color: #54595d; }
     </style>
 </head>
 <body>
 
-<header>
-    <div style="font-size: 1.6rem; letter-spacing: 2px;">ROBOTICA<b>DOCS</b></div>
-    <nav>
-        <button onclick="show('intro')">Fundamentos</button>
-        <button onclick="show('software')">Lenguajes</button>
-        <button onclick="show('hardware')">Sensores</button>
-        <button onclick="show('plataformas')">Plataformas</button>
-        <button onclick="show('arquitectura')">Arquitectura</button>
-    </nav>
-</header>
+<aside>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Wikipedia_wordmark.svg" alt="Wiki Logo">
+    <ul>
+        <li onclick="show('historia')">Historia</li>
+        <li onclick="show('hardware')">Hardware y Física</li>
+        <li onclick="show('software')">Software y Control</li>
+        <li onclick="show('clases')">Clasificación</li>
+        <li onclick="show('etica')">Ética y Futuro</li>
+    </ul>
+</aside>
 
-<section id="intro" class="active">
-    <div class="content-box">
-        <h1 contenteditable="true" class="editable">Introducción a la Cibernética y Robótica</h1>
-        <p contenteditable="true" class="editable">La robótica es la rama de la ingeniería que combina la mecánica, la electrónica y las ciencias de la computación. Su objetivo es crear máquinas programables que asistan o sustituyan al ser humano en tareas repetitivas, peligrosas o que requieren precisión extrema.</p>
-        <p contenteditable="true" class="editable">El concepto principal es el <b>Ciclo de Retroalimentación</b>: el robot recibe datos del exterior, los analiza mediante algoritmos lógicos y genera una respuesta física a través de actuadores.</p>
-    </div>
-</section>
-
-<section id="software">
-    <h2>Ecosistema de Software</h2>
-    <div class="tech-grid">
-        <div class="content-box">
-            <h3>Programación de Bajo Nivel (C++)</h3>
-            <p contenteditable="true" class="editable">Se trabaja directamente con el microcontrolador. C++ es el lenguaje predominante porque permite gestionar los <b>punteros de memoria</b> y los <b>timers</b> del procesador. Es lo que permite que un dron se estabilice en microsegundos; cualquier retraso en el software causaría un accidente.</p>
+<main>
+    <section id="historia" class="active">
+        <header><h1>Robótica</h1></header>
+        <div class="infobox">
+            <table>
+                <tr><th colspan="2">Sistemas Robóticos</th></tr>
+                <tr><td colspan="2"><center><span style="font-size: 50px;">🤖</span></center></td></tr>
+                <tr><td><b>Tipo</b></td><td>Multidisciplinar</td></tr>
+                <tr><td><b>Componentes</b></td><td>Mecánica, IA, Control</td></tr>
+                <tr><td><b>Primer diseño</b></td><td>Leonardo da Vinci (1495)</td></tr>
+            </table>
         </div>
-        <div class="content-box">
-            <h3>Interpretación de Alto Nivel (Python)</h3>
-            <p contenteditable="true" class="editable">Se usa en la capa superior del robot. Mientras C++ mueve los motores, Python analiza la imagen de una cámara para reconocer una cara. Trabaja con bibliotecas como <code>NumPy</code> para cálculos matemáticos complejos y <code>PyTorch</code> para aprendizaje profundo (Deep Learning).</p>
+        <div class="editable-content" contenteditable="true">
+            <p>La <b>robótica</b> es la intersección de la ciencia, la ingeniería y la tecnología que produce máquinas, llamadas robots, que sustituyen (o replican) las acciones humanas. La historia moderna comienza con <i>George Devol</i>, quien patentó el primer robot industrial reprogramable en 1954.</p>
+            
+            <div class="toc">
+                <b>Sumario</b>
+                1. Etimología<br>
+                2. Historia antigua<br>
+                3. La era industrial<br>
+                4. Robótica cognitiva
+            </div>
+
+            <h2>Etimología</h2>
+            <p>El término proviene de la palabra checa <i>robota</i> (trabajo forzado). Fue introducido por Karel Čapek en su obra R.U.R. en 1920. Posteriormente, el bioquímico y escritor Isaac Asimov estableció las "Leyes de la Robótica".</p>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="hardware">
-    <h2>Física de los Sensores</h2>
-    
-    <div class="content-box">
-        <h3 contenteditable="true" class="editable">Transducción y Señales</h3>
-        <p contenteditable="true" class="editable">Un sensor no "lee" distancia o temperatura; lee <b>diferencia de potencial (voltaje)</b>. Por ejemplo, un termistor cambia su resistencia eléctrica según el calor. El microcontrolador mide ese cambio de voltaje y, mediante una fórmula matemática dentro del código, lo traduce a grados Celsius.</p>
-        <p contenteditable="true" class="editable"><b>Sensores Digitales (I2C/SPI):</b> A diferencia de los analógicos, estos ya tienen un chip interno que envía los datos mediante "paquetes" de información digital, permitiendo conectar decenas de sensores usando solo dos cables.</p>
-    </div>
-</section>
+    <section id="hardware">
+        <header><h1>Hardware y Principios Físicos</h1></header>
+        <div class="editable-content" contenteditable="true">
+            <p>El hardware robótico es el cuerpo físico del sistema. Se basa en principios de la física de estado sólido y la mecánica clásica.</p>
+            
+            <h2>Sensores (Transductores)</h2>
+            <p>Los sensores convierten una magnitud física en una señal eléctrica manejable por un microprocesador.</p>
+            
+            <ul>
+                <li><b>Lidar:</b> Light Detection and Ranging. Mide distancias mediante pulsos de láser.</li>
+                <li><b>IMU (Inertial Measurement Unit):</b> Combina acelerómetros y giroscopios para calcular la orientación en el espacio 3D.</li>
+                <li><b>Sensores de Fuerza:</b> Utilizan galgas extensiométricas para medir la presión en las extremidades.</li>
+            </ul>
 
-<section id="plataformas">
-    <h2>Plataformas de Desarrollo</h2>
-    <div class="tech-grid">
-        <div class="content-box">
-            <h3>Arduino y Microcontroladores</h3>
-            <p contenteditable="true" class="editable">Son sistemas de "tiempo real". No tienen un sistema operativo cargado, solo ejecutan un bucle <code>loop()</code> sin parar. Esto garantiza que una instrucción se ejecute exactamente cuando se le pide.</p>
+            <h2>Actuadores y Grados de Libertad (DoF)</h2>
+            <p>Un robot se define por sus grados de libertad, que representan el número de movimientos independientes que puede realizar. Los actuadores (motores, pistones) proporcionan el torque necesario.</p>
         </div>
-        <div class="content-box">
-            <h3>Sistemas Embebidos (Raspberry Pi)</h3>
-            <p contenteditable="true" class="editable">Son computadoras completas que ejecutan Linux. Se utilizan cuando el robot necesita conectarse a internet, manejar bases de datos o realizar visión artificial pesada que un Arduino no podría procesar.</p>
+    </section>
+
+    <section id="software">
+        <header><h1>Teoría de Control y Software</h1></header>
+        <div class="editable-content" contenteditable="true">
+            <p>El software robótico gestiona la percepción, la planificación de trayectorias y la ejecución de tareas en tiempo real.</p>
+            
+            <h2>Control en Lazo Cerrado (PID)</h2>
+            <p>El control Proporcional-Integral-Derivativo es el algoritmo más usado para mantener a un robot en una posición deseada. Corrige el error entre el valor medido y el valor deseado.</p>
+            
+
+[Image of PID control loop diagram]
+
+            
+            <h2>Lenguajes y Arquitecturas</h2>
+            <p>La programación se divide en capas:</p>
+            <ol>
+                <li><b>Tiempo Real (C/C++):</b> Control de motores y lectura de sensores a nivel de microsegundos.</li>
+                <li><b>Capa de Aplicación (Python/Java):</b> Lógica de alto nivel, conectividad a bases de datos y APIs.</li>
+                <li><b>ROS (Robot Operating System):</b> Un framework que permite la comunicación entre diferentes nodos de software de forma asíncrona.</li>
+            </ol>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="arquitectura">
-    <h2>Arquitectura de un Sistema Robótico</h2>
-    
+    <section id="clases">
+        <header><h1>Tipología y Taxonomía</h1></header>
+        <div class="editable-content" contenteditable="true">
+            <p>Los robots se clasifican según su entorno de operación y su nivel de autonomía.</p>
+            
+            <h3>Robots de Servicio</h3>
+            <p>Sistemas que operan de forma autónoma o semiautónoma para realizar servicios útiles para el bienestar de los humanos, excluyendo operaciones industriales.</p>
+            
+            <h3>Robots Colaborativos (Cobots)</h3>
+            <p>Diseñados para trabajar físicamente junto a humanos en un espacio compartido, equipados con sensores de seguridad avanzados para evitar colisiones.</p>
+            
+            <h3>Nanobots</h3>
+            <p>Robótica a escala molecular. Actualmente en fase de investigación para aplicaciones de medicina dirigida (entrega de fármacos en células cancerosas).</p>
+        </div>
+    </section>
 
-[Image of a robot control system block diagram]
+    <section id="etica">
+        <header><h1>Impacto Socio-Ético</h1></header>
+        <div class="editable-content" contenteditable="true">
+            <p>El avance de la robótica plantea desafíos fundamentales para la estructura de la sociedad humana.</p>
 
-    <div class="content-box">
-        <h3 contenteditable="true" class="editable">La Unidad de Procesamiento Central</h3>
-        <p contenteditable="true" class="editable">Aquí es donde ocurre la magia. La arquitectura se divide en tres capas:</p>
-        <ol contenteditable="true" class="editable">
-            <li><b>Capa Perceptual:</b> Recolección y filtrado de ruido de los sensores.</li>
-            <li><b>Capa Cognitiva:</b> Toma de decisiones basada en lógica booleana (IF-THEN-ELSE) o redes neuronales.</li>
-            <li><b>Capa Ejecutiva:</b> Generación de señales PWM (Modulación por Ancho de Pulso) para controlar la velocidad de los motores.</li>
-        </ol>
-    </div>
-</section>
+            <h2>Desplazamiento Laboral</h2>
+            <p>La automatización masiva genera debates sobre la Renta Básica Universal, ya que la productividad aumenta mientras la necesidad de mano de obra humana disminuye.</p>
+            
+            <h2>El Problema de la Responsabilidad</h2>
+            <p>En caso de fallo de un sistema autónomo (como un vehículo sin conductor), la ética legal debate si la responsabilidad recae en el programador, el fabricante o el propio algoritmo.</p>
+            
+            
+            <h3>Singularidad Tecnológica</h3>
+            <p>Hipótesis que sugiere que el crecimiento tecnológico exponencial llegará a un punto donde la IA se mejorará a sí misma más rápido de lo que los humanos pueden entender.</p>
+        </div>
+    </section>
 
-<footer>
-    <p>&copy; 2026 Plataforma Educativa de Robótica - Explicación Técnica Integral</p>
-    <p><small>Nota: Haz clic sobre cualquier párrafo para editar el contenido y personalizar la explicación.</small></p>
-</footer>
+    <footer>
+        <p>Esta página es una base de conocimientos editable. Haz clic en cualquier sección para ampliar la información.</p>
+        <p>&copy; 2026 RobotiPedia - El conocimiento libre sobre máquinas.</p>
+    </footer>
+</main>
 
 <script>
     function show(id) {
-        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        // Ocultar todas las secciones
+        const sections = document.querySelectorAll('section');
+        sections.forEach(s => s.classList.remove('active'));
+        
+        // Mostrar la seleccionada
         document.getElementById(id).classList.add('active');
+        
+        // Scroll al inicio
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
 </script>
