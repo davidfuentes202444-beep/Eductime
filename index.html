@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eductime | Professional Robotics Encyclopedia</title>
+    <title>Eductime | Advanced Robotics Engineering</title>
     <style>
         :root {
             --primary: #00e5ff;
@@ -38,8 +38,8 @@
         
         .hero { 
             background: linear-gradient(145deg, #101824, #080d14); 
-            padding: 80px; border-radius: 30px; margin-bottom: 40px;
-            border: 1px solid #1e293b; position: relative; overflow: hidden;
+            padding: 60px; border-radius: 30px; margin-bottom: 40px;
+            border: 1px solid #1e293b; position: relative;
         }
         .hero h1 { font-size: 3.5rem; margin: 0; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
@@ -47,18 +47,19 @@
         section.active { display: block; animation: slideUp 0.5s ease-out; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Grid de Información Profesional */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px; }
-        .card { background: var(--card-dark); padding: 30px; border-radius: 20px; border: 1px solid #1e293b; position: relative; }
-        .card h3 { color: var(--primary); margin-top: 0; font-size: 1.4rem; }
+        .card { background: var(--card-dark); padding: 30px; border-radius: 20px; border: 1px solid #1e293b; margin-bottom: 25px; }
+        .card h3 { color: var(--primary); margin-top: 0; }
         
-        .editable { cursor: text; padding: 15px; border-radius: 10px; line-height: 1.7; font-size: 1.1rem; color: #cbd5e1; }
+        .editable { cursor: text; padding: 10px; border-radius: 10px; line-height: 1.7; }
         .editable:focus { outline: 2px solid var(--primary); background: #1a2433; }
 
-        .image-placeholder { background: #1e293b; border-radius: 15px; padding: 20px; margin: 25px 0; text-align: center; border: 2px dashed #334155; }
+        .img-container { background: #000; border-radius: 15px; padding: 20px; margin: 25px 0; text-align: center; border: 1px solid #334155; }
+        .img-container img { max-width: 100%; border-radius: 10px; }
         
         h2 { font-size: 2rem; color: white; border-left: 4px solid var(--gold); padding-left: 20px; margin: 50px 0 30px; }
         
+        .math { font-family: 'Times New Roman', serif; background: #1a2433; padding: 20px; border-radius: 10px; color: var(--primary); font-size: 1.2rem; overflow-x: auto; }
+
         footer { text-align: center; padding: 60px 0; border-top: 1px solid #1e293b; color: var(--text-gray); }
     </style>
 </head>
@@ -68,11 +69,11 @@
     <div class="brand">EDUCTIME<span>.PRO</span></div>
     <nav>
         <ul>
-            <li onclick="show('intro')" id="btn-intro" class="active"><i>🏠</i> Fundamentos</li>
-            <li onclick="show('hard')" id="btn-hard"><i>⚙️</i> Hardware Pro</li>
-            <li onclick="show('soft')" id="btn-soft"><i>💻</i> Control & IA</li>
-            <li onclick="show('ind')" id="btn-ind"><i>🏭</i> Ind. 4.0</li>
-            <li onclick="show('ethics')" id="btn-ethics"><i>⚖️</i> Ética & Futuro</li>
+            <li onclick="show('intro')" id="btn-intro" class="active">Fundamentos</li>
+            <li onclick="show('hard')" id="btn-hard">Hardware & Sensores</li>
+            <li onclick="show('math')" id="btn-math">Cinemática & Matrices</li>
+            <li onclick="show('soft')" id="btn-soft">Control & IA</li>
+            <li onclick="show('ind')" id="btn-ind">Industria 4.0</li>
         </ul>
     </nav>
 </aside>
@@ -80,122 +81,91 @@
 <main>
     <section id="intro" class="active">
         <div class="hero">
-            <h1>Ingeniería Robótica</h1>
-            <p style="font-size: 1.2rem; color: var(--text-gray);">La convergencia definitiva entre la materia y el algoritmo.</p>
+            <h1>Sistemas Ciberfísicos</h1>
+            <p style="color: var(--text-gray);">Ingeniería de alta precisión y autonomía.</p>
         </div>
         <div class="editable" contenteditable="true">
-            <h2>Definición Técnica de Robótica Profesional</h2>
-            <p>A diferencia de la robótica recreativa, la <b>robótica profesional</b> se define como la integración de sistemas ciberfísicos diseñados para operar con precisión submilimétrica en entornos dinámicos. Esto requiere un dominio profundo de la cinemática, la dinámica de fuerzas y la electrónica de potencia.</p>
+            <h2>El Ecosistema Robótico Profesional</h2>
+            <p>En <b>Eductime</b>, definimos la robótica como la ciencia de la autonomía física. A diferencia de un sistema estático, un robot profesional debe resolver el problema de la localización y el mapeo simultáneo (SLAM).</p>
             
-            <div class="card">
-                <h3>El Ciclo Feedback de Tiempo Real</h3>
-                <p>En robótica profesional, el tiempo de respuesta se mide en microsegundos. El sistema debe leer el estado del sensor, calcular la corrección de error y ajustar el actuador antes de que la inercia física desvíe el proceso.</p>
-            </div>
         </div>
     </section>
 
     <section id="hard">
-        <h2>Hardware y Arquitectura Física</h2>
+        <h2>Ingeniería de Hardware Avanzada</h2>
         <div class="editable" contenteditable="true">
-            <p>La estructura de un robot profesional se basa en la optimización de la relación <b>fuerza-peso</b>. Se utilizan aleaciones de aluminio aeronáutico y fibra de carbono para reducir la inercia.</p>
+            <p>La mecánica de precisión utiliza actuadores de alto torque y sensores de grado industrial.</p>
             
-            <div class="image-placeholder">
+            <div class="img-container">
                 
-                <p><small>Diagrama de los 6 ejes (Grados de Libertad) estándar en brazos industriales.</small></p>
+                <p><small>Configuración de 6 DoF: Base, Hombro, Codo, Pitch, Roll y Yaw.</small></p>
             </div>
 
-            <h3>Sistemas de Sensado Avanzado</h3>
-            <p>Los sensores profesionales se dividen en:</p>
-            <ul>
-                <li><b>Propioceptivos:</b> Monitorean el estado interno (Codificadores magnéticos, sensores de temperatura de motor).</li>
-                <li><b>Exteroceptivos:</b> Perciben el entorno (Sistemas LIDAR de 360°, Visión Estereoscópica).</li>
-            </ul>
+            <h3>Sensores y Fusión de Datos</h3>
+            <p>Un robot no confía en un solo sensor. La <b>Fusión Sensorial</b> combina datos de un LIDAR con una IMU para filtrar el ruido y obtener una posición exacta.</p>
+            
+        </div>
+    </section>
 
-            <div class="image-placeholder">
+    <section id="math">
+        <h2>Matemáticas de la Cinemática</h2>
+        <div class="editable" contenteditable="true">
+            <p>Para mover un robot, usamos matrices de transformación homogénea para describir la posición de cada articulación en el espacio.</p>
+            
+            <div class="math">
+                T = [ R | d ] <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;[ 0 | 1 ]
+            </div>
+            <p>Donde <b>R</b> es la matriz de rotación y <b>d</b> es el vector de desplazamiento.</p>
+            
+            <div class="img-container">
                 
-                <p><small>Física del rebote de onda para la detección de obstáculos y mapeo de entorno.</small></p>
+                <p><small>Cinemática Inversa: Calculando ángulos a partir de coordenadas cartesianas.</small></p>
             </div>
         </div>
     </section>
 
     <section id="soft">
-        <h2>Sistemas de Control y Lógica</h2>
+        <h2>Control de Lazo Cerrado e IA</h2>
         <div class="editable" contenteditable="true">
-            <div class="card" style="background: #000; color: #00e5ff; font-family: monospace;">
-                // Lógica de Lazo Cerrado (PID)<br>
-                Error = Setpoint - Feedback;<br>
-                Salida = (Kp * Error) + (Ki * Integral) + (Kd * Derivada);
-            </div>
+            <p>El control PID es esencial para la suavidad del movimiento. Un robot sin PID oscilaría violentamente al intentar detenerse.</p>
             
-            <h3>Control PID (Proporcional-Integral-Derivativo)</h3>
-            <p>Es la base matemática que permite que un robot se mueva con suavidad. Sin un control PID bien ajustado, los movimientos serían bruscos, oscilatorios y peligrosos para los humanos cercanos.</p>
-            
-            <div class="image-placeholder">
+            <div class="img-container">
                 
-                <p><small>Esquema de retroalimentación constante para la corrección de errores de trayectoria.</small></p>
+                <p><small>Lazo de realimentación: Proporcional, Integral y Derivativo.</small></p>
             </div>
 
-            <h3>Inteligencia Artificial y Machine Learning</h3>
-            <p>La robótica moderna utiliza <b>Reinforcement Learning</b> para que el robot aprenda a caminar o manipular objetos nuevos mediante el ensayo y error en simuladores antes de pasar al mundo físico.</p>
+            <h3>Redes Neuronales Convolucionales</h3>
+            <p>La visión artificial permite al robot identificar objetos mediante capas de neuronas artificiales que detectan bordes, formas y finalmente objetos complejos.</p>
+            
         </div>
     </section>
 
     <section id="ind">
-        <h2>Robótica Industrial y Colaborativa</h2>
+        <h2>Automatización e Industria 4.0</h2>
         <div class="editable" contenteditable="true">
-            <div class="info-grid">
-                <div class="card">
-                    <h3>Cinemática Inversa</h3>
-                    <p>Es el cálculo matemático para determinar qué ángulos deben tener las articulaciones para que la punta del robot llegue a una coordenada exacta en el espacio.</p>
-                </div>
-                <div class="card">
-                    <h3>Cobots (Collaborative Robots)</h3>
-                    <p>Equipados con piel sensible al tacto y limitadores de corriente que detectan cualquier contacto humano mínimo para detenerse instantáneamente.</p>
-                </div>
+            <div class="card">
+                <h3>Celdas Robotizadas</h3>
+                <p>Integración de múltiples robots sincronizados por un PLC maestro para líneas de ensamblaje masivo.</p>
             </div>
             
-            <div class="image-placeholder">
-                
-                <p><small>Cálculo de matrices de transformación para el movimiento articulado.</small></p>
-            </div>
-        </div>
-    </section>
 
-    <section id="ethics">
-        <h2>Ética y la Frontera Tecnológica</h2>
-        <div class="editable" contenteditable="true">
-            <p>A medida que la robótica profesional se integra en la sociedad, surgen dilemas sobre la responsabilidad legal de los sistemas autónomos.</p>
-            
-            <div class="card" style="border-top-color: var(--gold);">
-                <h3>La Singularidad y la Roboética</h3>
-                <p>El punto donde la IA pueda diseñar robots mejores que los que un humano puede concebir. El desarrollo debe estar regido por estándares de seguridad funcional (ISO 10218).</p>
-            </div>
+[Image of a robot control system block diagram]
 
-            <div class="image-placeholder">
-                
-                <p><small>Pilares de la ética en sistemas autónomos: Transparencia, Justicia y Responsabilidad.</small></p>
-            </div>
         </div>
     </section>
 
     <footer>
         <p><b>EDUCTIME</b> - High Performance Robotics Portal &copy; 2026</p>
-        <p>Todo el contenido técnico es editable para personalización profesional.</p>
     </footer>
 </main>
 
 <script>
     function show(id) {
-        // Ocultar todas las secciones
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        // Mostrar la seleccionada
         document.getElementById(id).classList.add('active');
-        
-        // Actualizar barra lateral
         document.querySelectorAll('nav li').forEach(li => li.classList.remove('active'));
         document.getElementById('btn-' + id).classList.add('active');
-        
-        // Scroll suave al inicio
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
 </script>
