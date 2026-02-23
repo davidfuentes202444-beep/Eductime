@@ -3,160 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eductime | Advanced Robotics Engineering</title>
+    <title>Eductime | Professional Robotics Masterclass</title>
     <style>
         :root {
             --primary: #00e5ff;
             --secondary: #007bb5;
             --bg-dark: #050a10;
-            --card-dark: #101824;
+            --card-dark: #0f172a;
             --text-gray: #94a3b8;
             --gold: #ffb700;
         }
         
-        body { font-family: 'Inter', 'Segoe UI', sans-serif; margin: 0; background: var(--bg-dark); color: #e2e8f0; display: flex; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg-dark); color: #e2e8f0; display: flex; }
         
-        /* Sidebar Estilo Centro de Control */
+        /* Sidebar Navigation */
         aside { 
-            width: 280px; background: #080d14; position: fixed; height: 100vh; 
+            width: 300px; background: #080d14; position: fixed; height: 100vh; 
             padding: 40px 25px; border-right: 1px solid #1e293b; z-index: 100;
         }
-        .brand { font-size: 24px; font-weight: 800; color: white; margin-bottom: 50px; display: flex; align-items: center; gap: 10px; }
+        .brand { font-size: 28px; font-weight: 900; color: white; margin-bottom: 50px; }
         .brand span { color: var(--primary); }
         
         nav ul { list-style: none; padding: 0; }
         nav li { 
-            padding: 15px; margin-bottom: 10px; border-radius: 12px; cursor: pointer; 
-            transition: 0.3s; color: var(--text-gray); display: flex; align-items: center; gap: 12px;
+            padding: 15px; margin-bottom: 12px; border-radius: 12px; cursor: pointer; 
+            transition: 0.3s; color: var(--text-gray); font-weight: 600;
             border: 1px solid transparent;
         }
-        nav li:hover { background: rgba(0, 229, 255, 0.05); border-color: var(--secondary); color: white; }
-        nav li.active { background: var(--secondary); color: white; box-shadow: 0 0 20px rgba(0, 123, 181, 0.4); }
+        nav li:hover { background: rgba(0, 229, 255, 0.05); color: white; }
+        nav li.active { background: var(--secondary); color: white; box-shadow: 0 0 20px rgba(0, 123, 181, 0.3); }
 
-        /* Contenido Principal */
-        main { margin-left: 280px; padding: 50px; width: 100%; box-sizing: border-box; }
+        /* Main Content */
+        main { margin-left: 300px; padding: 60px; width: 100%; box-sizing: border-box; }
         
-        .hero { 
-            background: linear-gradient(145deg, #101824, #080d14); 
-            padding: 60px; border-radius: 30px; margin-bottom: 40px;
-            border: 1px solid #1e293b; position: relative;
-        }
-        .hero h1 { font-size: 3.5rem; margin: 0; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        section { display: none; }
-        section.active { display: block; animation: slideUp 0.5s ease-out; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        section { display: none; max-width: 1100px; margin: 0 auto; }
+        section.active { display: block; animation: slideUp 0.6s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .card { background: var(--card-dark); padding: 30px; border-radius: 20px; border: 1px solid #1e293b; margin-bottom: 25px; }
-        .card h3 { color: var(--primary); margin-top: 0; }
+        .hero-title { font-size: 4rem; margin: 0 0 40px 0; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border-bottom: 2px solid #1e293b; padding-bottom: 20px; }
         
-        .editable { cursor: text; padding: 10px; border-radius: 10px; line-height: 1.7; }
-        .editable:focus { outline: 2px solid var(--primary); background: #1a2433; }
+        .info-block { margin-bottom: 50px; line-height: 1.8; font-size: 1.15rem; text-align: justify; }
+        .info-block h2 { color: var(--primary); font-size: 2rem; border-left: 5px solid var(--gold); padding-left: 20px; margin-bottom: 25px; }
+        
+        .visual-data { background: var(--card-dark); border-radius: 20px; padding: 30px; margin: 30px 0; border: 1px solid #1e293b; text-align: center; }
+        .visual-data p { font-size: 0.9rem; color: var(--gold); margin-top: 15px; text-transform: uppercase; letter-spacing: 1px; }
 
-        .img-container { background: #000; border-radius: 15px; padding: 20px; margin: 25px 0; text-align: center; border: 1px solid #334155; }
-        .img-container img { max-width: 100%; border-radius: 10px; }
+        .math-box { background: #000; padding: 25px; border-radius: 15px; border-left: 4px solid var(--primary); font-family: 'Courier New', monospace; color: #00ff00; margin: 20px 0; }
         
-        h2 { font-size: 2rem; color: white; border-left: 4px solid var(--gold); padding-left: 20px; margin: 50px 0 30px; }
-        
-        .math { font-family: 'Times New Roman', serif; background: #1a2433; padding: 20px; border-radius: 10px; color: var(--primary); font-size: 1.2rem; overflow-x: auto; }
+        .editable { cursor: pointer; transition: 0.3s; }
+        .editable:hover { outline: 1px dashed var(--primary); background: rgba(0,229,255,0.02); }
 
-        footer { text-align: center; padding: 60px 0; border-top: 1px solid #1e293b; color: var(--text-gray); }
+        footer { text-align: center; padding: 100px 0 50px; border-top: 1px solid #1e293b; color: var(--text-gray); }
     </style>
 </head>
 <body>
 
 <aside>
-    <div class="brand">EDUCTIME<span>.PRO</span></div>
+    <div class="brand">EDUC<span>TIME</span></div>
     <nav>
         <ul>
-            <li onclick="show('intro')" id="btn-intro" class="active">Fundamentos</li>
-            <li onclick="show('hard')" id="btn-hard">Hardware & Sensores</li>
-            <li onclick="show('math')" id="btn-math">Cinemática & Matrices</li>
-            <li onclick="show('soft')" id="btn-soft">Control & IA</li>
-            <li onclick="show('ind')" id="btn-ind">Industria 4.0</li>
+            <li onclick="show('p1')" id="btn-p1" class="active">Sistemas Ciberfísicos</li>
+            <li onclick="show('p2')" id="btn-p2">Hardware & Energía</li>
+            <li onclick="show('p3')" id="btn-p3">Cinemática & Dinámica</li>
+            <li onclick="show('p4')" id="btn-p4">Control & Inteligencia</li>
+            <li onclick="show('p5')" id="btn-p5">Ecosistema Industrial</li>
         </ul>
     </nav>
 </aside>
 
 <main>
-    <section id="intro" class="active">
-        <div class="hero">
-            <h1>Sistemas Ciberfísicos</h1>
-            <p style="color: var(--text-gray);">Ingeniería de alta precisión y autonomía.</p>
-        </div>
+    <section id="p1" class="active">
+        <h1 class="hero-title">Ingeniería de Sistemas Ciberfísicos</h1>
         <div class="editable" contenteditable="true">
-            <h2>El Ecosistema Robótico Profesional</h2>
-            <p>En <b>Eductime</b>, definimos la robótica como la ciencia de la autonomía física. A diferencia de un sistema estático, un robot profesional debe resolver el problema de la localización y el mapeo simultáneo (SLAM).</p>
-            
-        </div>
-    </section>
-
-    <section id="hard">
-        <h2>Ingeniería de Hardware Avanzada</h2>
-        <div class="editable" contenteditable="true">
-            <p>La mecánica de precisión utiliza actuadores de alto torque y sensores de grado industrial.</p>
-            
-            <div class="img-container">
+            <div class="info-block">
+                <h2>Paradigma de la Autonomía Moderna</h2>
+                <p>La robótica profesional contemporánea ha trascendido la mera automatización mecánica para convertirse en la ciencia de los sistemas ciberfísicos (CPS). Este paradigma implica una integración profunda entre los procesos físicos y el software de computación, donde los sensores y actuadores interactúan en tiempo real mediante redes de retroalimentación constante. A diferencia de las máquinas herramientas tradicionales, un robot profesional posee la capacidad de percibir su entorno, razonar sobre las incertidumbres de los datos capturados y ejecutar una respuesta física precisa. Este nivel de autonomía requiere una arquitectura de hardware robusta que soporte las demandas de procesamiento paralelo necesarias para la navegación, la manipulación y la interacción segura.</p>
                 
-                <p><small>Configuración de 6 DoF: Base, Hombro, Codo, Pitch, Roll y Yaw.</small></p>
-            </div>
-
-            <h3>Sensores y Fusión de Datos</h3>
-            <p>Un robot no confía en un solo sensor. La <b>Fusión Sensorial</b> combina datos de un LIDAR con una IMU para filtrar el ruido y obtener una posición exacta.</p>
-            
-        </div>
-    </section>
-
-    <section id="math">
-        <h2>Matemáticas de la Cinemática</h2>
-        <div class="editable" contenteditable="true">
-            <p>Para mover un robot, usamos matrices de transformación homogénea para describir la posición de cada articulación en el espacio.</p>
-            
-            <div class="math">
-                T = [ R | d ] <br>
-                &nbsp;&nbsp;&nbsp;&nbsp;[ 0 | 1 ]
-            </div>
-            <p>Donde <b>R</b> es la matriz de rotación y <b>d</b> es el vector de desplazamiento.</p>
-            
-            <div class="img-container">
-                
-                <p><small>Cinemática Inversa: Calculando ángulos a partir de coordenadas cartesianas.</small></p>
-            </div>
-        </div>
-    </section>
-
-    <section id="soft">
-        <h2>Control de Lazo Cerrado e IA</h2>
-        <div class="editable" contenteditable="true">
-            <p>El control PID es esencial para la suavidad del movimiento. Un robot sin PID oscilaría violentamente al intentar detenerse.</p>
-            
-            <div class="img-container">
-                
-                <p><small>Lazo de realimentación: Proporcional, Integral y Derivativo.</small></p>
-            </div>
-
-            <h3>Redes Neuronales Convolucionales</h3>
-            <p>La visión artificial permite al robot identificar objetos mediante capas de neuronas artificiales que detectan bordes, formas y finalmente objetos complejos.</p>
-            
-        </div>
-    </section>
-
-    <section id="ind">
-        <h2>Automatización e Industria 4.0</h2>
-        <div class="editable" contenteditable="true">
-            <div class="card">
-                <h3>Celdas Robotizadas</h3>
-                <p>Integración de múltiples robots sincronizados por un PLC maestro para líneas de ensamblaje masivo.</p>
-            </div>
-            
 
 [Image of a robot control system block diagram]
 
+                <p>El estudio de estos sistemas se divide en tres dominios fundamentales: la percepción, la cognición y la actuación. La percepción utiliza sensores avanzados para digitalizar el mundo analógico; la cognición procesa esta información mediante algoritmos de planificación y toma de decisiones; y la actuación traduce las órdenes digitales en torque y movimiento mecánico. Comprender esta trinidad es esencial para cualquier ingeniero que busque diseñar sistemas que operen en entornos no estructurados, como almacenes inteligentes, laboratorios médicos o superficies planetarias. La robótica profesional actual busca minimizar la intervención humana directa, permitiendo que las máquinas gestionen tareas críticas de alta complejidad con una eficiencia que supera los límites biológicos tradicionales.</p>
+            </div>
+            
+            <div class="visual-data">
+                
+                <p>Visualización de mapeo y localización simultánea (SLAM) para navegación autónoma.</p>
+            </div>
+
+            <div class="info-block">
+                <h2>Evolución de la Interacción Humano-Robot</h2>
+                <p>La historia de la robótica profesional se ha caracterizado por una transición desde la segregación total hacia la colaboración estrecha. En las primeras décadas de la automatización industrial, los robots eran máquinas peligrosas confinadas en jaulas de seguridad, programadas para realizar una única tarea repetitiva sin conciencia de su entorno. Sin embargo, el surgimiento de la robótica colaborativa (cobots) ha cambiado drásticamente este panorama. Los cobots modernos están equipados con pieles sintéticas sensibles a la presión y sensores de torque integrados en cada articulación, lo que les permite detectar el contacto humano instantáneamente y detener su operación en milisegundos para evitar cualquier lesión o accidente laboral.</p>
+                
+                <p>Esta evolución no solo es de seguridad, sino de flexibilidad operativa. La programación de los robots ha pasado de líneas de código crípticas a sistemas de aprendizaje por demostración, donde un operario puede guiar físicamente el brazo del robot para enseñarle una trayectoria. Este avance democratiza la robótica profesional, permitiendo que pequeñas y medianas empresas implementen automatización avanzada sin necesidad de un equipo masivo de programadores especializados. En el futuro cercano, la interacción será aún más natural mediante el uso de interfaces cerebro-computadora y reconocimiento de gestos avanzados, consolidando al robot no como una herramienta aislada, sino como un compañero de trabajo inteligente y altamente adaptable a las necesidades de la producción personalizada.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="p2">
+        <h1 class="hero-title">Hardware y Electrónica de Potencia</h1>
+        <div class="editable" contenteditable="true">
+            <div class="info-block">
+                <h2>Anatomía de la Actuación de Alta Precisión</h2>
+                <p>El hardware de un robot profesional es una obra maestra de la ingeniería de materiales y la mecatrónica. El chasis debe ser excepcionalmente rígido pero ligero para minimizar la inercia, utilizando frecuentemente aleaciones de aluminio aeronáutico, titanio o materiales compuestos de fibra de carbono. En el corazón de cada movimiento se encuentran los servomotores de corriente continua sin escobillas (BLDC) o motores paso a paso de alta resolución. Estos actuadores no trabajan solos; están acoplados a sistemas de transmisión de alta precisión como los reductores armónicos (Harmonic Drive), que ofrecen una relación de reducción masiva con un juego mecánico (backlash) prácticamente inexistente, permitiendo que el robot repita una posición con una precisión de micrómetros.</p>
+                
+                <p>La gestión de la energía es otro pilar crítico. Los controladores de motor profesionales utilizan etapas de potencia basadas en transistores MOSFET o IGBT que operan mediante Modulación por Ancho de Pulso (PWM) a frecuencias extremadamente altas para garantizar un movimiento suave y eficiente. Además, la disipación térmica es un desafío constante en robots que operan 24/7; los ingenieros deben diseñar sistemas de refrigeración pasiva o activa para evitar que el calor degrade los imanes de neodimio de los motores o los componentes electrónicos sensibles. Sin esta base de hardware sólida y térmicamente estable, los algoritmos más sofisticados del mundo fallarían debido a la deriva mecánica y la falta de repetibilidad en las trayectorias físicas.</p>
+            </div>
+
+            <div class="visual-data">
+                
+                <p>Desglose de los 6 ejes de libertad en un brazo robótico profesional.</p>
+            </div>
+
+            <div class="info-block">
+                <h2>Física de los Sensores y Percepción Crítica</h2>
+                <p>Para que un robot profesional interactúe con el mundo, requiere una suite de sensores que traduzcan magnitudes físicas en datos procesables. Los codificadores (encoders) ópticos o magnéticos proporcionan una retroalimentación de posición absoluta, permitiendo que el sistema conozca el ángulo exacto de cada articulación en todo momento. En el extremo del robot, los sensores de fuerza y par de seis ejes permiten realizar tareas delicadas, como el pulido de superficies o la inserción de componentes electrónicos, midiendo las fuerzas de reacción que el objeto ejerce sobre el robot. Esta retroalimentación de fuerza es lo que otorga al robot una "mano suave", capaz de manipular objetos frágiles sin destruirlos.</p>
+                
+                <p>En el ámbito de la percepción ambiental, la visión artificial y el LIDAR son fundamentales. Un LIDAR profesional emite miles de pulsos de láser por segundo, midiendo el tiempo de vuelo de cada fotón para construir una nube de puntos 3D de alta densidad del entorno. Esto permite al robot navegar de forma segura evitando obstáculos dinámicos en tiempo real. Por otro lado, las cámaras de profundidad (RGB-D) proporcionan información de color y distancia, lo que facilita el reconocimiento y la clasificación de objetos mediante redes neuronales. La combinación de estos datos, conocida como fusión sensorial, asegura que el robot mantenga una conciencia situacional total, incluso en condiciones de baja iluminación o entornos industriales ruidosos.</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="p3">
+        <h1 class="hero-title">Cinemática y Dinámica de Sistemas</h1>
+        <div class="editable" contenteditable="true">
+            <div class="info-block">
+                <h2>Matemáticas de la Transformación Espacial</h2>
+                <p>La robótica profesional se fundamenta sobre la geometría del movimiento, descrita a través de la cinemática. Para ubicar el efector final de un robot en el espacio 3D, utilizamos matrices de transformación homogénea de 4x4. Estas matrices combinan información de rotación y traslación, permitiendo concatenar las posiciones de múltiples articulaciones mediante la multiplicación de matrices. La convención de Denavit-Hartenberg (DH) es el estándar de oro para asignar marcos de coordenadas a cada eslabón del robot, reduciendo la complejidad de describir sistemas de múltiples articulaciones a un conjunto de cuatro parámetros por eje. Sin estas bases matemáticas, sería imposible calcular la trayectoria necesaria para que un robot realice una soldadura perfecta o una incisión quirúrgica.</p>
+                <div class="math-box">
+                    T = [ R(3x3) | d(3x1) ] <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;[ 0(1x3) | 1 ]
+                </div>
+                <p>Más allá de la posición, la cinemática diferencial analiza la velocidad mediante la matriz Jacobiana. El Jacobiano relaciona las velocidades angulares de los motores con la velocidad lineal y angular del extremo del robot. Es una herramienta crítica para identificar singularidades robóticas: configuraciones geométricas donde el robot pierde uno o más grados de libertad y el control matemático falla. En una singularidad, las velocidades de los motores tenderían al infinito para mantener un movimiento lineal, lo que podría destruir los actuadores. Por ello, los controladores profesionales integran algoritmos de evasión de singularidades que garantizan que el robot opere siempre dentro de su espacio de trabajo seguro y controlable.</p>
+            </div>
+
+            <div class="visual-data">
+                
+                <p>Modelo geométrico para el cálculo de cinemática inversa en tiempo real.</p>
+            </div>
+
+            <div class="info-block">
+                <h2>Dinámica y Control de Esfuerzos</h2>
+                <p>Mientras que la cinemática se ocupa de la geometría, la dinámica se enfoca en las fuerzas y torques necesarios para generar ese movimiento. Las ecuaciones de Euler-Lagrange se utilizan para modelar la energía del sistema, teniendo en cuenta la masa de los eslabones, la inercia de los rotores y las fuerzas de fricción en los rodamientos. Un robot profesional debe compensar la gravedad en tiempo real; de lo contrario, el brazo caería bajo su propio peso. Esta compensación requiere modelos matemáticos precisos de la carga que el robot está transportando. Un error de pocos gramos en la estimación de la carga puede provocar vibraciones no deseadas o una pérdida de precisión en la trayectoria final del efector.</p>
+                
+                <p>La dinámica también es crucial para el control de impedancia y admitancia. Estas técnicas permiten que el robot se comporte como una "masa-resorte" virtual, otorgándole una flexibilidad controlada al interactuar con el entorno. Por ejemplo, en el ensamblaje de piezas de motor que encajan a presión, el robot no debe ser infinitamente rígido, sino que debe "ceder" ligeramente para que las piezas se alineen de forma natural. Este comportamiento se logra mediante el control de torque basado en el modelo dinámico, permitiendo que las máquinas colaboren de manera fluida y segura en tareas que anteriormente requerían la destreza y la sensibilidad táctil exclusivas de un artesano humano.</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="p4">
+        <h1 class="hero-title">Algoritmos de Control e Inteligencia</h1>
+        <div class="editable" contenteditable="true">
+            <div class="info-block">
+                <h2>Teoría de Control de Lazo Cerrado</h2>
+                <p>El control de un robot profesional se basa en la eliminación constante del error entre el estado deseado y el estado real. El algoritmo PID (Proporcional, Integral, Derivativo) es el pilar fundamental de esta regulación. El término Proporcional ajusta la respuesta según la magnitud del error; el Integral elimina el error acumulado en estado estacionario (como el efecto de la gravedad); y el Derivativo actúa como un amortiguador, prediciendo errores futuros para evitar oscilaciones. Sin embargo, en robótica avanzada, el PID básico suele ser insuficiente debido a las no linealidades del sistema. Por ello, se implementan controles de prealimentación (feedforward) y controladores de modelo predictivo (MPC), que anticipan el comportamiento físico del robot para tomar decisiones proactivas.</p>
+                
+                <p>La estabilidad del sistema se analiza mediante criterios de control como la estabilidad de Lyapunov, asegurando que ante cualquier perturbación externa, el robot regrese a su estado de equilibrio. En sistemas multieje coordinados, el control debe ser descentralizado pero sincronizado mediante buses de comunicación de alta velocidad como EtherCAT o CANOpen. Estos protocolos garantizan que el retardo (jitter) en la entrega de las señales de control sea despreciable, permitiendo que todos los motores trabajen al unísono para realizar trayectorias complejas de cinco ejes. La excelencia en el control es lo que distingue a un robot profesional de un prototipo experimental, garantizando una operación fluida y predecible bajo cualquier condición operativa.</p>
+            </div>
+
+            <div class="visual-data">
+                
+                <p>Arquitectura de red neuronal convolucional para la percepción visual del robot.</p>
+            </div>
+
+            <div class="info-block">
+                <h2>Inteligencia Artificial y Aprendizaje Profundo</h2>
+                <p>La integración de la Inteligencia Artificial (IA) ha dotado a los robots de una capacidad de adaptación sin precedentes. Mediante el uso de Redes Neuronales Convolucionales (CNN), un robot puede analizar transmisiones de video en tiempo real para identificar, localizar y clasificar miles de objetos diferentes con una precisión superior a la humana. Esto es vital para la logística automatizada, donde el robot debe "ver" y recoger artículos variados de un contenedor desordenado. Pero la IA va más allá de la visión; el Aprendizaje por Refuerzo (Reinforcement Learning) permite que los robots optimicen sus propias trayectorias mediante millones de simulaciones previas, aprendiendo a caminar sobre terrenos difíciles o a manipular herramientas complejas de forma autónoma.</p>
+                
+                <p>El futuro de la robótica profesional reside en la IA Generativa y los Modelos de Lenguaje Aplicados. Estos permiten que los robots comprendan comandos verbales ambiguos ("Limpia el derrame en el pasillo tres") y los traduzcan en una serie de subtareas lógicas y movimientos físicos coordinados. Esta capa de abstracción elimina la necesidad de programar cada movimiento individual, permitiendo que el robot actúe como un agente inteligente con capacidad de resolución de problemas. Al combinar la potencia de cálculo en la nube con el procesamiento local (Edge AI), los robots profesionales de la próxima década podrán aprender de las experiencias de otros robots en todo el mundo, evolucionando colectivamente para enfrentar desafíos industriales cada vez más exigentes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="p5">
+        <h1 class="hero-title">Ecosistema Industrial y Futuro</h1>
+        <div class="editable" contenteditable="true">
+            <div class="info-block">
+                <h2>Celdas de Manufactura Inteligente 4.0</h2>
+                <p>La Industria 4.0 representa la digitalización total de la producción, donde los robots profesionales son los protagonistas. Una celda de manufactura moderna no es solo un grupo de máquinas, sino un ecosistema interconectado que utiliza el Internet de las Cosas (IIoT) para reportar su estado de salud, productividad y consumo energético en tiempo real. Los robots se comunican entre sí para optimizar el flujo de trabajo, ajustando sus velocidades para evitar cuellos de botella y coordinando entregas con vehículos de guiado automático (AGVs) o robots móviles autónomos (AMRs). Esta interconectividad permite la "fabricación de lote uno", donde el sistema puede cambiar de producir un modelo a otro instantáneamente sin necesidad de reconfigurar físicamente la línea.</p>
+                
+                <p>El mantenimiento predictivo es otra ventaja crucial de este ecosistema. Mediante el análisis de los datos de corriente de los motores y las vibraciones detectadas por los sensores internos, los algoritmos de IA pueden predecir cuándo fallará un rodamiento o un cable semanas antes de que ocurra el incidente. Esto permite programar las reparaciones durante las paradas planificadas, eliminando los costos catastróficos de los tiempos de inactividad no deseados. En este entorno, el robot deja de ser un activo estático para convertirse en una unidad de datos dinámica que contribuye a la optimización continua de toda la planta de producción, elevando los estándares de competitividad y calidad a niveles globales.</p>
+            </div>
+
+            <div class="visual-data">
+                
+                <p>Arquitectura de conectividad IIoT en una planta robótica moderna.</p>
+            </div>
+
+            <div class="info-block">
+                <h2>El Futuro: Robótica General y Ética</h2>
+                <p>Nos acercamos a la era de la Robótica de Propósito General, donde las máquinas no estarán limitadas a una sola fábrica, sino que podrán ser reasignadas a diversas tareas domésticas, médicas o logísticas con una configuración mínima. Los robots humanoides de nueva generación, con actuadores eléctricos de alta densidad de torque y manos con destreza humana, están listos para ocupar roles en entornos diseñados para personas. Este avance trae consigo desafíos éticos significativos. Debemos considerar la roboética: ¿Cómo garantizamos que los algoritmos de decisión de un robot autónomo prioricen siempre la seguridad humana? ¿Cómo gestionamos el impacto en el mercado laboral a medida que la automatización se infiltra en sectores que anteriormente dependían exclusivamente de la mano de obra manual?</p>
+                
+                <p>La estandarización internacional, como las normas ISO 10218 y la ISO/TS 15066, ya establece los cimientos para la seguridad funcional, pero la evolución social requerirá nuevos marcos legales y educativos. En Eductime, creemos que la robótica no debe ser vista como una amenaza, sino como una herramienta de amplificación humana que nos liberará de las tareas peligrosas, sucias y aburridas (las "3D": Dirty, Dangerous, Dull). El futuro profesional pertenece a aquellos que entiendan cómo colaborar con estas máquinas inteligentes, integrando la creatividad y el juicio ético humano con la precisión y la fuerza inalcanzable de los sistemas robóticos. Estamos en la cúspide de una simbiosis tecnológica que redefinirá lo que significa ser una sociedad productiva en el siglo XXI.</p>
+            </div>
+            
         </div>
     </section>
 
     <footer>
-        <p><b>EDUCTIME</b> - High Performance Robotics Portal &copy; 2026</p>
+        <p><b>EDUCTIME</b> - Portal Líder en Especialización Técnica y Robótica Profesional &copy; 2026</p>
+        <p>La información técnica detallada ha sido generada para fines de educación superior y consulta profesional.</p>
     </footer>
 </main>
 
