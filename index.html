@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduRobótica | Aprende Robótica</title>
+    <style>
+        :root { --primary: #2c3e50; --accent: #3498db; --admin: #e74c3c; }
+        body { font-family: sans-serif; margin: 0; background: #f4f4f4; }
+        header { background: var(--primary); color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
+        nav button { background: none; border: none; color: white; cursor: pointer; font-weight: bold; margin-left: 15px; }
+        section { display: none; padding: 40px; max-width: 900px; margin: auto; background: white; min-height: 70vh; border-radius: 8px; margin-top: 20px; }
+        section.active { display: block; }
+        .card { border-left: 5px solid var(--accent); padding: 15px; background: #eee; margin: 10px 0; }
+        #admin-panel { border: 2px solid var(--admin); }
+        footer { text-align: center; padding: 20px; color: #666; font-size: 0.8rem; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>EduRobótica 🤖</h1>
+    <nav>
+        <button onclick="show('inicio')">Inicio</button>
+        <button onclick="show('conceptos')">Conceptos</button>
+        <button onclick="show('proyectos')">Proyectos</button>
+        <button onclick="show('contacto')">Contacto</button>
+        </nav>
+</header>
+
+<section id="inicio" class="active">
+    <h2>Bienvenido a la Era de la Robótica</h2>
+    <p>Explora el mundo de la automatización y la programación desde cero.</p>
+    <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd05a?w=500" alt="Robot" style="width:100%; border-radius:10px;">
+</section>
+
+<section id="conceptos">
+    <h2>Conceptos Básicos</h2>
+    <div class="card"><h3>Sensores</h3><p>Dispositivos que captan información del entorno.</p></div>
+    <div class="card"><h3>Actuadores</h3><p>Motores y luces que ejecutan acciones físicas.</p></div>
+    <div class="card"><h3>Microcontroladores</h3><p>El "cerebro" del robot (ej. Arduino, ESP32).</p></div>
+</section>
+
+<section id="proyectos">
+    <h2>Proyectos Paso a Paso</h2>
+    <ul>
+        <li><strong>Nivel 1:</strong> Seguidor de línea básico.</li>
+        <li><strong>Nivel 2:</strong> Brazo robótico con servomotores.</li>
+        <li><strong>Nivel 3:</strong> Robot controlado por Bluetooth.</li>
+    </ul>
+</section>
+
+<section id="contacto">
+    <h2>Soporte Educativo</h2>
+    <p>¿Tienes dudas con tu kit? Escríbenos.</p>
+    <form>
+        <input type="email" placeholder="Tu correo" style="width:100%; padding:10px; margin-bottom:10px;"><br>
+        <textarea placeholder="Tu consulta" style="width:100%; height:100px;"></textarea><br>
+        <button type="button" style="background:var(--accent); color:white; border:none; padding:10px 20px;">Enviar</button>
+    </form>
+</section>
+
+<section id="admin">
+    <h2 style="color:var(--admin)">Panel de Control Administrativo</h2>
+    <p>Gestión de base de datos y usuarios (Acceso restringido).</p>
+    <table border="1" style="width:100%; border-collapse: collapse;">
+        <tr style="background:#eee"><th>Usuario</th><th>Progreso</th><th>Acción</th></tr>
+        <tr><td>Juan Pérez</td><td>85%</td><td><button>Editar</button></td></tr>
+        <tr><td>Ana Gómez</td><td>40%</td><td><button>Editar</button></td></tr>
+    </table>
+</section>
+
+<footer>
+    &copy; 2026 EduRobótica Educativa. 
+    <span onclick="show('admin')" style="cursor:pointer; color:#f4f4f4;">.</span>
+</footer>
+
+<script>
+    function show(id) {
+        // Ocultar todas las secciones
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        // Mostrar la seleccionada
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+</script>
+
+</body>
+</html>
