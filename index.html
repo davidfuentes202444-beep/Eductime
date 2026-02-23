@@ -3,115 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduRobótica | Portal Educativo</title>
+    <title>Enciclopedia de Robótica Educativa</title>
     <style>
-        :root { --cobalto: #0056b3; --naranja: #ff8c00; --fondo: #f8f9fa; --texto: #333; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--fondo); color: var(--texto); line-height: 1.6; }
+        :root { --tech-blue: #00d2ff; --deep-slate: #1a202c; --logic-green: #4ade80; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; background: #f0f2f5; color: #2d3748; line-height: 1.8; }
         
-        /* Navegación */
-        header { background: #1a1a1a; color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        nav button { background: none; border: none; color: white; cursor: pointer; font-size: 1rem; margin-left: 15px; transition: 0.3s; }
-        nav button:hover { color: var(--naranja); }
+        header { background: var(--deep-slate); color: white; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--tech-blue); position: sticky; top: 0; z-index: 100; }
+        nav button { background: #2d3748; border: 1px solid var(--tech-blue); color: var(--tech-blue); cursor: pointer; padding: 10px 18px; border-radius: 4px; font-weight: bold; margin-left: 10px; transition: 0.3s; }
+        nav button:hover { background: var(--tech-blue); color: white; }
 
-        /* Secciones */
-        section { display: none; padding: 60px 10%; animation: fadeIn 0.5s; }
+        section { display: none; padding: 60px 10%; animation: fadeIn 0.5s ease; }
         section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Estilos de Contenido */
-        .editable-area { border: 1px dashed #ccc; padding: 20px; border-radius: 8px; background: white; transition: 0.3s; }
-        .editable-area:hover { border-color: var(--naranja); outline: none; }
-        .hero { text-align: center; padding: 40px 0; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; color: white; border-radius: 15px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .content-box { background: white; padding: 35px; border-radius: 15px; shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 6px solid var(--tech-blue); margin-bottom: 30px; }
+        h1, h2 { color: var(--deep-slate); }
+        .editable { cursor: text; padding: 5px; border-radius: 3px; }
+        .editable:hover { background: #fdfae6; outline: 1px dashed #d4af37; }
         
-        footer { text-align: center; padding: 40px; background: #1a1a1a; color: white; margin-top: 50px; }
-        .edit-hint { color: var(--naranja); font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; display: block; }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        code { background: #edf2f7; color: #e53e3e; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+        footer { background: var(--deep-slate); color: #a0aec0; text-align: center; padding: 30px; margin-top: 60px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h2 onclick="show('inicio')" style="cursor:pointer">ROBOTIC-ED 🤖</h2>
+    <div style="font-size: 1.6rem; letter-spacing: 2px;">ROBOTICA<b>DOCS</b></div>
     <nav>
-        <button onclick="show('inicio')">Inicio</button>
-        <button onclick="show('teoria')">Teoría</button>
-        <button onclick="show('componentes')">Kits</button>
-        <button onclick="show('proyectos')">Proyectos</button>
-        <button onclick="show('contacto')">Contacto</button>
+        <button onclick="show('intro')">Fundamentos</button>
+        <button onclick="show('software')">Lenguajes</button>
+        <button onclick="show('hardware')">Sensores</button>
+        <button onclick="show('plataformas')">Plataformas</button>
+        <button onclick="show('arquitectura')">Arquitectura</button>
     </nav>
 </header>
 
-<section id="inicio" class="active">
-    <div class="hero">
-        <span class="edit-hint">[Haz clic abajo para editar el título y mensaje de bienvenida]</span>
-        <h1 contenteditable="true">Explora el Futuro de la Robótica</h1>
-        <p contenteditable="true">Aprende a construir, programar y diseñar sistemas inteligentes desde cero.</p>
+<section id="intro" class="active">
+    <div class="content-box">
+        <h1 contenteditable="true" class="editable">Introducción a la Cibernética y Robótica</h1>
+        <p contenteditable="true" class="editable">La robótica es la rama de la ingeniería que combina la mecánica, la electrónica y las ciencias de la computación. Su objetivo es crear máquinas programables que asistan o sustituyan al ser humano en tareas repetitivas, peligrosas o que requieren precisión extrema.</p>
+        <p contenteditable="true" class="editable">El concepto principal es el <b>Ciclo de Retroalimentación</b>: el robot recibe datos del exterior, los analiza mediante algoritmos lógicos y genera una respuesta física a través de actuadores.</p>
     </div>
 </section>
 
-<section id="teoria">
-    <h2>Fundamentos de Robótica</h2>
-    <span class="edit-hint">[Puedes editar las definiciones haciendo clic en el texto]</span>
-    <div class="grid">
-        <div class="card">
-            <h3>¿Qué es un Robot?</h3>
-            <p contenteditable="true">Un sistema electromecánico capaz de realizar tareas de manera autónoma o semiautónoma mediante programación.</p>
+<section id="software">
+    <h2>Ecosistema de Software</h2>
+    <div class="tech-grid">
+        <div class="content-box">
+            <h3>Programación de Bajo Nivel (C++)</h3>
+            <p contenteditable="true" class="editable">Se trabaja directamente con el microcontrolador. C++ es el lenguaje predominante porque permite gestionar los <b>punteros de memoria</b> y los <b>timers</b> del procesador. Es lo que permite que un dron se estabilice en microsegundos; cualquier retraso en el software causaría un accidente.</p>
         </div>
-        <div class="card">
-            <h3>Leyes de la Robótica</h3>
-            <p contenteditable="true">Basadas en Isaac Asimov: 1. No dañar humanos. 2. Obedecer órdenes. 3. Proteger su propia existencia.</p>
-        </div>
-    </div>
-</section>
-
-<section id="componentes">
-    <h2>Hardware Esencial</h2>
-    <div class="grid">
-        <div class="card">
-            <h3 contenteditable="true">Cerebro: Arduino/ESP32</h3>
-            <p contenteditable="true">Es la unidad de control que procesa el código y toma decisiones según los sensores.</p>
-        </div>
-        <div class="card">
-            <h3 contenteditable="true">Sensores Ultrasonidos</h3>
-            <p contenteditable="true">Permiten al robot detectar obstáculos midiendo la distancia mediante ondas de sonido.</p>
+        <div class="content-box">
+            <h3>Interpretación de Alto Nivel (Python)</h3>
+            <p contenteditable="true" class="editable">Se usa en la capa superior del robot. Mientras C++ mueve los motores, Python analiza la imagen de una cámara para reconocer una cara. Trabaja con bibliotecas como <code>NumPy</code> para cálculos matemáticos complejos y <code>PyTorch</code> para aprendizaje profundo (Deep Learning).</p>
         </div>
     </div>
 </section>
 
-<section id="proyectos">
-    <h2>Guía de Proyectos Prácticos</h2>
-    <div class="editable-area" contenteditable="true">
-        <h3>Proyecto 1: El Seguidor de Línea</h3>
-        <p>Aprende a usar sensores infrarrojos para seguir un camino marcado en el suelo.</p>
-        <hr>
-        <h3>Proyecto 2: Brazo Hidráulico/Robótico</h3>
-        <p>Introducción al uso de servomotores y articulaciones mecánicas.</p>
+<section id="hardware">
+    <h2>Física de los Sensores</h2>
+    
+    <div class="content-box">
+        <h3 contenteditable="true" class="editable">Transducción y Señales</h3>
+        <p contenteditable="true" class="editable">Un sensor no "lee" distancia o temperatura; lee <b>diferencia de potencial (voltaje)</b>. Por ejemplo, un termistor cambia su resistencia eléctrica según el calor. El microcontrolador mide ese cambio de voltaje y, mediante una fórmula matemática dentro del código, lo traduce a grados Celsius.</p>
+        <p contenteditable="true" class="editable"><b>Sensores Digitales (I2C/SPI):</b> A diferencia de los analógicos, estos ya tienen un chip interno que envía los datos mediante "paquetes" de información digital, permitiendo conectar decenas de sensores usando solo dos cables.</p>
     </div>
 </section>
 
-<section id="contacto">
-    <h2>Soporte y Comunidad</h2>
-    <p>Si tienes dudas sobre tus proyectos, contáctanos:</p>
-    <div class="editable-area" contenteditable="true">
-        <p>📧 Email: contacto@edurobotica.com</p>
-        <p>📍 Ubicación: Laboratorio de Innovación Tecnológica</p>
-        <p>🕒 Horario: Lunes a Viernes (09:00 - 18:00)</p>
+<section id="plataformas">
+    <h2>Plataformas de Desarrollo</h2>
+    <div class="tech-grid">
+        <div class="content-box">
+            <h3>Arduino y Microcontroladores</h3>
+            <p contenteditable="true" class="editable">Son sistemas de "tiempo real". No tienen un sistema operativo cargado, solo ejecutan un bucle <code>loop()</code> sin parar. Esto garantiza que una instrucción se ejecute exactamente cuando se le pide.</p>
+        </div>
+        <div class="content-box">
+            <h3>Sistemas Embebidos (Raspberry Pi)</h3>
+            <p contenteditable="true" class="editable">Son computadoras completas que ejecutan Linux. Se utilizan cuando el robot necesita conectarse a internet, manejar bases de datos o realizar visión artificial pesada que un Arduino no podría procesar.</p>
+        </div>
+    </div>
+</section>
+
+<section id="arquitectura">
+    <h2>Arquitectura de un Sistema Robótico</h2>
+    
+
+[Image of a robot control system block diagram]
+
+    <div class="content-box">
+        <h3 contenteditable="true" class="editable">La Unidad de Procesamiento Central</h3>
+        <p contenteditable="true" class="editable">Aquí es donde ocurre la magia. La arquitectura se divide en tres capas:</p>
+        <ol contenteditable="true" class="editable">
+            <li><b>Capa Perceptual:</b> Recolección y filtrado de ruido de los sensores.</li>
+            <li><b>Capa Cognitiva:</b> Toma de decisiones basada en lógica booleana (IF-THEN-ELSE) o redes neuronales.</li>
+            <li><b>Capa Ejecutiva:</b> Generación de señales PWM (Modulación por Ancho de Pulso) para controlar la velocidad de los motores.</li>
+        </ol>
     </div>
 </section>
 
 <footer>
-    <p>&copy; 2026 EduRobótica - Contenido Educativo Abierto</p>
+    <p>&copy; 2026 Plataforma Educativa de Robótica - Explicación Técnica Integral</p>
+    <p><small>Nota: Haz clic sobre cualquier párrafo para editar el contenido y personalizar la explicación.</small></p>
 </footer>
 
 <script>
     function show(id) {
-        // Ocultar todas las secciones
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        // Mostrar la sección seleccionada
         document.getElementById(id).classList.add('active');
-        // Desplazar al inicio de la página
-        window.scrollTo(0, 0);
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 </script>
 
