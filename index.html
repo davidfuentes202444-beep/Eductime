@@ -17,46 +17,45 @@
         body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg-dark); color: #e2e8f0; display: flex; }
         
         aside { 
-            width: 300px; background: #080d14; position: fixed; height: 100vh; 
-            padding: 40px 25px; border-right: 1px solid #1e293b; z-index: 100;
+            width: 280px; background: #080d14; position: fixed; height: 100vh; 
+            padding: 40px 20px; border-right: 1px solid #1e293b; z-index: 1000;
         }
-        .brand { font-size: 28px; font-weight: 900; color: white; margin-bottom: 50px; }
+        .brand { font-size: 26px; font-weight: 900; color: white; margin-bottom: 40px; }
         .brand span { color: var(--primary); }
-        
         nav ul { list-style: none; padding: 0; }
         nav li { 
-            padding: 15px; margin-bottom: 12px; border-radius: 12px; cursor: pointer; 
-            transition: 0.3s; color: var(--text-gray); font-weight: 600;
-            border: 1px solid transparent;
+            padding: 12px; margin-bottom: 10px; border-radius: 10px; cursor: pointer; 
+            transition: 0.3s; color: var(--text-gray); font-size: 0.95rem; font-weight: 600;
         }
-        nav li:hover { background: rgba(0, 229, 255, 0.05); color: white; }
-        nav li.active { background: var(--secondary); color: white; box-shadow: 0 0 20px rgba(0, 123, 181, 0.3); }
+        nav li:hover { background: rgba(0, 229, 255, 0.1); color: white; }
+        nav li.active { background: var(--secondary); color: white; }
 
-        main { margin-left: 300px; padding: 60px; width: 100%; box-sizing: border-box; }
-        
-        section { display: none; max-width: 1100px; margin: 0 auto; }
-        section.active { display: block; animation: slideUp 0.6s ease; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        main { margin-left: 280px; padding: 40px; width: calc(100% - 280px); box-sizing: border-box; }
+        section { display: none; max-width: 1000px; margin: 0 auto; }
+        section.active { display: block; animation: fadeIn 0.5s ease; }
 
-        .hero-title { font-size: 4rem; margin: 0 0 40px 0; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border-bottom: 2px solid #1e293b; padding-bottom: 20px; }
+        .carousel { position: relative; width: 100%; height: 500px; border-radius: 20px; overflow: hidden; margin-bottom: 40px; border: 1px solid #1e293b; }
+        .slides { display: flex; width: 100%; height: 100%; transition: transform 0.4s ease-in-out; }
+        .slide { min-width: 100%; height: 100%; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
         
-        .info-block { margin-bottom: 50px; line-height: 1.8; font-size: 1.15rem; text-align: justify; }
-        .info-block h2 { color: var(--primary); font-size: 2rem; border-left: 5px solid var(--gold); padding-left: 20px; margin-bottom: 25px; }
+        .controls { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); padding: 0 20px; box-sizing: border-box; pointer-events: none; }
+        .btn { background: rgba(0,0,0,0.7); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; pointer-events: auto; }
         
-        .visual-data { background: var(--card-dark); border-radius: 20px; padding: 30px; margin: 30px 0; border: 1px solid #1e293b; text-align: center; }
-        .visual-data img { max-width: 100%; border-radius: 10px; border: 1px solid var(--secondary); }
-        .visual-data p { font-size: 0.9rem; color: var(--gold); margin-top: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero-title { font-size: 3.5rem; margin-bottom: 25px; color: white; }
+        .info-block { margin-bottom: 50px; line-height: 1.8; text-align: justify; font-size: 1.1rem; }
+        .info-block h2 { color: var(--primary); font-size: 2rem; border-left: 5px solid var(--gold); padding-left: 15px; margin: 40px 0 20px; }
+        
+        .math-box { background: #000; padding: 20px; border-radius: 10px; color: var(--primary); font-family: monospace; border-left: 4px solid var(--gold); margin: 20px 0; }
 
-        .math-box { background: #000; padding: 25px; border-radius: 15px; border-left: 4px solid var(--primary); font-family: 'Courier New', monospace; color: #00ff00; margin: 20px 0; }
-        .editable { cursor: pointer; transition: 0.3s; }
-        
-        footer { text-align: center; padding: 100px 0 50px; border-top: 1px solid #1e293b; color: var(--text-gray); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        footer { text-align: center; padding: 60px 0; color: var(--text-gray); border-top: 1px solid #1e293b; }
     </style>
 </head>
 <body>
 
 <aside>
-    <div class="brand">EDUC<span>TIME</span></div>
+    <div class="brand">EDUCTIME<span>.PRO</span></div>
     <nav>
         <ul>
             <li onclick="show('p1')" id="btn-p1" class="active">Sistemas Ciberfísicos</li>
@@ -70,132 +69,122 @@
 
 <main>
     <section id="p1" class="active">
-        <h1 class="hero-title">Sistemas Ciberfísicos</h1>
-        <div class="editable" contenteditable="true">
-            <div class="info-block">
-                <h2>Paradigma de la Autonomía Moderna</h2>
-                <p>La robótica profesional contemporánea ha trascendido la mera automatización mecánica para convertirse en la ciencia de los sistemas ciberfísicos (CPS). Este paradigma implica una integración profunda entre los procesos físicos y el software de computación, donde los sensores y actuadores interactúan en tiempo real mediante redes de retroalimentación constante.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800" alt="Control System">
-                    <p>Diagrama de flujo de datos en sistemas de control ciberfísicos</p>
-                </div>
-                <p>El estudio de estos sistemas se divide en tres dominios fundamentales: la percepción, la cognición y la actuación. La percepción utiliza sensores avanzados para digitalizar el mundo analógico; la cognición procesa esta información mediante algoritmos de planificación y toma de decisiones; y la actuación traduce las órdenes digitales en torque y movimiento mecánico.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd05a?w=800" alt="Robot Cognition">
-                    <p>Fusión de sensores para navegación autónoma avanzada</p>
-                </div>
-                <p>En el futuro cercano, la interacción será aún más natural mediante el uso de interfaces cerebro-computadora y reconocimiento de gestos avanzados, consolidando al robot no como una herramienta aislada, sino como un compañero de trabajo inteligente y altamente adaptable a las necesidades de la producción personalizada.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800" alt="Human Interaction">
-                    <p>Interacción Humano-Robot en entornos de alta precisión</p>
-                </div>
+        <div class="carousel" id="carousel-p1">
+            <div class="slides">
+                <div class="slide"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200" alt="Cyber 1"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1518433278983-4903513ca097?auto=format&fit=crop&w=1200" alt="Cyber 2"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1200" alt="Cyber 3"></div>
             </div>
+            <div class="controls"><button class="btn" onclick="moveSlide('p1', -1)">&#10094;</button><button class="btn" onclick="moveSlide('p1', 1)">&#10095;</button></div>
+        </div>
+        <h1 class="hero-title">Sistemas Ciberfísicos (CPS)</h1>
+        <div class="info-block" contenteditable="true">
+            <h2>Paradigma de Autonomía</h2>
+            <p>La robótica profesional contemporánea ha trascendido la mera automatización mecánica para convertirse en la ciencia de los sistemas ciberfísicos (CPS). Este paradigma implica una integración profunda entre los procesos físicos y el software de computación. 
+
+[Image of the robot control system block diagram]
+</p>
+            <p>El estudio de estos sistemas se divide en tres dominios fundamentales: la percepción, la cognición y la actuación. La percepción utiliza sensores avanzados para digitalizar el mundo analógico; la cognición procesa esta información mediante algoritmos de planificación. </p>
+            <p>La historia de la robótica profesional se ha caracterizado por una transición desde la segregación total hacia la colaboración estrecha. En las primeras décadas, los robots estaban confinados en jaulas. El surgimiento de los cobots ha permitido que humanos y máquinas compartan el mismo espacio con total seguridad.</p>
+            <p>La implementación de Gemelos Digitales permite simular el comportamiento de un sistema antes de su despliegue físico. Un gemelo digital es un modelo virtual idéntico al robot real que recibe datos para predecir fallos y optimizar el rendimiento, reduciendo costes operativos.</p>
+            <p>Al estar conectados a redes industriales, los robots son vulnerables a ciberataques. Los ingenieros actuales deben implementar protocolos de cifrado de extremo a extremo y sistemas de detección de intrusiones en tiempo real para proteger la infraestructura física de manipulaciones remotas malintencionadas.</p>
+            <p>Finalmente, la ciberseguridad se ha vuelto un componente innegociable. La robustez de un sistema ciberfísico no solo se mide por su capacidad de carga o su precisión, sino por su resiliencia ante ataques digitales. La confianza en la robótica depende de nuestra capacidad para crear máquinas seguras.</p>
         </div>
     </section>
 
     <section id="p2">
-        <h1 class="hero-title">Hardware & Energía</h1>
-        <div class="editable" contenteditable="true">
-            <div class="info-block">
-                <h2>Ingeniería de Materiales y Actuación</h2>
-                <p>El hardware de un robot profesional es una obra maestra de la ingeniería de materiales. El chasis debe ser excepcionalmente rígido pero ligero para minimizar la inercia, utilizando frecuentemente aleaciones de aluminio aeronáutico o fibra de carbono.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800" alt="Actuators">
-                    <p>Desglose de servomotores de alta densidad de torque</p>
-                </div>
-                <p>La gestión de la energía es otro pilar crítico. Los controladores de motor profesionales utilizan etapas de potencia basadas en transistores MOSFET que operan mediante Modulación por Ancho de Pulso (PWM) a frecuencias extremadamente altas para garantizar un movimiento suave.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800" alt="Electronics">
-                    <p>Circuitería de potencia para control de actuadores brushless</p>
-                </div>
-                <p>En el ámbito de la percepción ambiental, el LIDAR es fundamental. Un LIDAR profesional emite miles de pulsos de láser por segundo, midiendo el tiempo de vuelo de cada fotón para construir una nube de puntos 3D de alta densidad del entorno.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=800" alt="Sensors">
-                    <p>Arquitectura de sensores Lidar y Visión Estereoscópica</p>
-                </div>
+        <div class="carousel" id="carousel-p2">
+            <div class="slides">
+                <div class="slide"><img src="https://images.unsplash.com/photo-1597733336794-12d05021d510?auto=format&fit=crop&w=1200" alt="Hard 1"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200" alt="Hard 2"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200" alt="Hard 3"></div>
             </div>
+            <div class="controls"><button class="btn" onclick="moveSlide('p2', -1)">&#10094;</button><button class="btn" onclick="moveSlide('p2', 1)">&#10095;</button></div>
+        </div>
+        <h1 class="hero-title">Hardware & Energía</h1>
+        <div class="info-block" contenteditable="true">
+            <h2>Ingeniería de Actuación</h2>
+            <p>El hardware de un robot profesional es una obra maestra de mecatrónica. En el corazón de cada movimiento se encuentran los servomotores BLDC acoplados a sistemas de transmisión como los reductores armónicos (Harmonic Drive). </p>
+            <p>La gestión energética es crítica. Los controladores utilizan MOSFETs que operan mediante PWM a frecuencias extremadamente altas para garantizar un movimiento suave. La disipación térmica requiere sistemas de refrigeración avanzados para evitar fallos por sobrecalentamiento en ciclos de trabajo intensivos.</p>
+            <p>Los sensores profesionales como codificadores ópticos proporcionan retroalimentación de posición absoluta. En el extremo del robot, los sensores de fuerza de seis ejes permiten realizar tareas delicadas como el pulido de superficies complejas con una presión constante y controlada electrónicamente.</p>
+            <p>En percepción ambiental, el LIDAR profesional emite miles de pulsos láser por segundo para construir una nube de puntos 3D. La combinación de estos datos con cámaras de profundidad (RGB-D) asegura una conciencia situacional total incluso en entornos industriales con poca iluminación o polvo.</p>
+            <p>La electrónica de potencia también gestiona el frenado regenerativo, recuperando energía cinética durante la deceleración para almacenarla en supercondensadores. Este enfoque mejora la eficiencia energética global de la planta de producción y reduce significativamente el calor generado por fricción.</p>
+            <p>Finalmente, los nuevos materiales como polímeros electroactivos permiten crear actuadores suaves que imitan músculos biológicos. Esto abre la puerta a la "Soft Robotics" para aplicaciones médicas donde se requiere una interacción física delicada con pacientes o muestras biológicas sensibles.</p>
         </div>
     </section>
 
     <section id="p3">
-        <h1 class="hero-title">Cinemática & Dinámica</h1>
-        <div class="editable" contenteditable="true">
-            <div class="info-block">
-                <h2>Matemáticas del Movimiento</h2>
-                <p>La robótica profesional se fundamenta sobre la geometría del movimiento, descrita a través de la cinemática. Para ubicar el efector final de un robot en el espacio 3D, utilizamos matrices de transformación homogénea de 4x4.</p>
-                <div class="math-box">T = [ R(3x3) | d(3x1) ] <br> [ 0(1x3) | 1 ]</div>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=800" alt="Kinematics">
-                    <p>Análisis de grados de libertad en articulaciones complejas</p>
-                </div>
-                <p>Más allá de la posición, la cinemática diferencial analiza la velocidad mediante la matriz Jacobiana. El Jacobiano relaciona las velocidades angulares de los motores con la velocidad lineal y angular del extremo del robot.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800" alt="Mathematical Model">
-                    <p>Representación de vectores de torque y dinámica de eslabones</p>
-                </div>
-                <p>La dinámica también es crucial para el control de impedancia. Estas técnicas permiten que el robot se comporte como una "masa-resorte" virtual, otorgándole una flexibilidad controlada al interactuar con el entorno.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1593376893114-1aed528d80cf?w=800" alt="Robot Dynamics">
-                    <p>Simulación de fuerzas en manipuladores de alta velocidad</p>
-                </div>
+        <div class="carousel" id="carousel-p3">
+            <div class="slides">
+                <div class="slide"><img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200" alt="Math 1"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1509228468518-180dd482175f?auto=format&fit=crop&w=1200" alt="Math 2"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=1200" alt="Math 3"></div>
             </div>
+            <div class="controls"><button class="btn" onclick="moveSlide('p3', -1)">&#10094;</button><button class="btn" onclick="moveSlide('p3', 1)">&#10095;</button></div>
+        </div>
+        <h1 class="hero-title">Cinemática & Dinámica</h1>
+        <div class="info-block" contenteditable="true">
+            <h2>Matemáticas del Movimiento</h2>
+            <div class="math-box">T = [ R(3x3) | d(3x1) ] <br> [ 0(1x3) | 1 ]</div>
+            <p>Para ubicar el efector final utilizamos matrices de transformación homogénea de 4x4. La convención de Denavit-Hartenberg (DH) es el estándar para asignar marcos de coordenadas. </p>
+            <p>La cinemática diferencial analiza la velocidad mediante la matriz Jacobiana, que relaciona las velocidades de los motores con la velocidad del extremo. Es crítica para identificar singularidades donde el control puede fallar catastróficamente por velocidades angulares infinitas.</p>
+            <p>Mientras la cinemática es geometría, la dinámica se enfoca en fuerzas y torques. Las ecuaciones de Euler-Lagrange modelan la energía del sistema considerando inercia y fricción. Un robot debe compensar la gravedad en tiempo real para mantener su posición estática sin oscilaciones.</p>
+            <p>El control de impedancia permite que el robot se comporte como un muelle virtual. Esto es vital en ensamblajes de motores donde las piezas deben encajar a presión, permitiendo que el robot ajuste su rigidez dinámicamente según la resistencia encontrada en la superficie de contacto.</p>
+            <p>El análisis de trayectorias utiliza splines y polinomios de quinto orden para asegurar que no haya saltos bruscos en la aceleración. Un movimiento fluido no solo mejora la precisión, sino que reduce drásticamente el estrés mecánico sobre los engranajes y motores del sistema.</p>
+            <p>Por último, la dinámica de cuerpos rígidos se complementa con simuladores de física avanzada. Estos permiten validar algoritmos complejos en entornos virtuales antes de cargarlos en el hardware real, garantizando la integridad física del robot y su entorno de trabajo.</p>
         </div>
     </section>
 
     <section id="p4">
-        <h1 class="hero-title">Control & Inteligencia</h1>
-        <div class="editable" contenteditable="true">
-            <div class="info-block">
-                <h2>Teoría de Control y IA</h2>
-                <p>El algoritmo PID (Proporcional, Integral, Derivativo) es el pilar fundamental de la regulación. El término Proporcional ajusta la respuesta según la magnitud del error; el Integral elimina el error acumulado; y el Derivativo amortigua.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800" alt="Control Logic">
-                    <p>Lazo de realimentación para estabilización de drones y robots</p>
-                </div>
-                <p>Mediante el uso de Redes Neuronales Convolucionales (CNN), un robot puede analizar transmisiones de video en tiempo real para identificar, localizar y clasificar miles de objetos diferentes con precisión superior.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800" alt="Artificial Intelligence">
-                    <p>Redes neuronales aplicadas a la visión artificial en tiempo real</p>
-                </div>
-                <p>El futuro reside en la IA Generativa. Estos permiten que los robots comprendan comandos verbales ambiguos y los traduzcan en una serie de subtareas lógicas y movimientos físicos coordinados.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1527430253228-e63688615a5f?w=800" alt="Machine Learning">
-                    <p>Entrenamiento de modelos de aprendizaje por refuerzo</p>
-                </div>
+        <div class="carousel" id="carousel-p4">
+            <div class="slides">
+                <div class="slide"><img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=1200" alt="IA 1"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1531746790731-6c087fecd05a?auto=format&fit=crop&w=1200" alt="IA 2"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200" alt="IA 3"></div>
             </div>
+            <div class="controls"><button class="btn" onclick="moveSlide('p4', -1)">&#10094;</button><button class="btn" onclick="moveSlide('p4', 1)">&#10095;</button></div>
+        </div>
+        <h1 class="hero-title">Control & IA</h1>
+        <div class="info-block" contenteditable="true">
+            <h2>Algoritmos de Control</h2>
+            <p>El control PID es el pilar de la regulación robótica. El término Proporcional ajusta la respuesta, el Integral elimina el error acumulado y el Derivativo amortigua las oscilaciones. </p>
+            <p>Las redes neuronales convolucionales (CNN) permiten que un robot analice video en tiempo real para clasificar objetos. Esto es vital en logística, donde el robot debe identificar paquetes variados con precisión. </p>
+            <p>El aprendizaje por refuerzo permite que los robots optimicen sus trayectorias mediante millones de simulaciones, aprendiendo a caminar sobre terrenos difíciles. Esta técnica de IA permite descubrir soluciones de movimiento que un programador humano difícilmente podría codificar manualmente.</p>
+            <p>El futuro reside en los modelos de lenguaje aplicados. Permiten que los robots comprendan comandos verbales complejos. Al combinar IA en la nube con procesamiento local, las flotas de robots pueden compartir conocimientos adquiridos en milisegundos a través de redes de baja latencia.</p>
+            <p>La inteligencia emocional artificial también empieza a integrarse. Mediante el análisis de microexpresiones faciales, el robot puede ajustar su velocidad y proximidad para ser más aceptado en entornos humanos, reduciendo el efecto del "valle inquietante" en la interacción social.</p>
+            <p>Finalmente, la ética de la IA asegura que los sistemas autónomos prioricen la seguridad humana. El desarrollo de marcos de decisión transparentes permite auditar por qué un robot tomó una ruta específica, garantizando responsabilidad en el despliegue de sistemas críticos autónomos.</p>
         </div>
     </section>
 
     <section id="p5">
-        <h1 class="hero-title">Industria 4.0</h1>
-        <div class="editable" contenteditable="true">
-            <div class="info-block">
-                <h2>Ecosistemas de Manufactura</h2>
-                <p>Una celda de manufactura moderna no es solo un grupo de máquinas, sino un ecosistema interconectado que utiliza el IIoT para reportar su estado de salud, productividad y consumo energético en tiempo real.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1565515239253-533423a23a41?w=800" alt="Smart Factory">
-                    <p>Líneas de producción automatizadas interconectadas</p>
-                </div>
-                <p>El mantenimiento predictivo es otra ventaja crucial. Mediante el análisis de los datos de corriente de los motores y las vibraciones, los algoritmos pueden predecir fallos semanas antes de que ocurran.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800" alt="Predictive Maintenance">
-                    <p>Monitoreo de telemetría industrial mediante sensores integrados</p>
-                </div>
-                <p>La robótica profesional nos liberará de las tareas "3D": Dirty, Dangerous, Dull. El futuro pertenece a aquellos que entiendan cómo colaborar con estas máquinas inteligentes e integrarlas en la vida diaria.</p>
-                <div class="visual-data">
-                    <img src="https://images.unsplash.com/photo-1546776310-eef45dd6d63c?w=800" alt="Future Robotics">
-                    <p>Diseño de robots humanoides de propósito general</p>
-                </div>
+        <div class="carousel" id="carousel-p5">
+            <div class="slides">
+                <div class="slide"><img src="https://images.unsplash.com/photo-1565515239253-533423a23a41?auto=format&fit=crop&w=1200" alt="Ind 1"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200" alt="Ind 2"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&w=1200" alt="Ind 3"></div>
             </div>
+            <div class="controls"><button class="btn" onclick="moveSlide('p5', -1)">&#10094;</button><button class="btn" onclick="moveSlide('p5', 1)">&#10095;</button></div>
+        </div>
+        <h1 class="hero-title">Industria 4.0</h1>
+        <div class="info-block" contenteditable="true">
+            <h2>Ecosistema Conectado</h2>
+            <p>La Industria 4.0 digitaliza la producción. Una celda moderna es un ecosistema interconectado (IIoT) que reporta su estado en tiempo real. </p>
+            <p>El mantenimiento predictivo analiza datos de motores para predecir fallos semanas antes de que ocurran. El robot es una unidad de datos que contribuye a la optimización de la planta, enviando alertas de desgaste de forma automática a los sistemas de gestión centralizada.</p>
+            <p>Los AMRs (Robots Móviles Autónomos) navegan por almacenes sin marcas en el suelo utilizando SLAM. Se coordinan entre sí para mover inventario, ajustando sus rutas dinámicamente para evitar cuellos de botella y maximizar el rendimiento de la cadena de suministro logística.</p>
+            <p>La robótica de propósito general con humanoides con alta destreza está transformando entornos diseñados para personas. La estandarización internacional ISO asegura que esta transición sea segura para la convivencia entre trabajadores biológicos y sistemas mecánicos automatizados.</p>
+            <p>La integración vertical conecta los sensores del robot con el ERP de la empresa. Una orden de compra activa instantáneamente el movimiento mecánico en la fábrica, eliminando tiempos de espera administrativos y permitiendo una personalización masiva de productos a bajo coste.</p>
+            <p>En conclusión, la robótica es una herramienta de amplificación humana. El futuro pertenece a quienes colaboren con estas máquinas inteligentes, integrando la creatividad humana con la precisión robótica para redefinir la productividad global en la nueva era tecnológica.</p>
         </div>
     </section>
 
     <footer>
-        <p><b>EDUCTIME</b> - Portal de Especialización Técnica &copy; 2026</p>
+        <p><b>EDUCTIME</b> - Portal Líder en Especialización Técnica &copy; 2026</p>
     </footer>
 </main>
 
 <script>
+    const sliderStates = { p1: 0, p2: 0, p3: 0, p4: 0, p5: 0 };
+
     function show(id) {
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
@@ -203,6 +192,22 @@
         document.getElementById('btn-' + id).classList.add('active');
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
+
+    function moveSlide(id, direction) {
+        const carousel = document.querySelector(`#carousel-${id}`);
+        if(!carousel) return;
+        const slides = carousel.querySelector('.slides');
+        const total = 3;
+        sliderStates[id] = (sliderStates[id] + direction + total) % total;
+        slides.style.transform = `translateX(-${sliderStates[id] * 100}%)`;
+    }
+
+    setInterval(() => {
+        const activeSection = document.querySelector('section.active');
+        if(activeSection) {
+            moveSlide(activeSection.id, 1);
+        }
+    }, 1000);
 </script>
 
 </body>
